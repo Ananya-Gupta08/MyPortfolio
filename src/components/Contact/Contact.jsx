@@ -1,19 +1,21 @@
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa'
+
 function Contact() {
   const socialLinks = [
     {
       name: 'GitHub',
-      url: 'https://github.com',
-      icon: '📱'
+      url: 'https://github.com/Ananya-Gupta08',
+      icon: FaGithub
     },
     {
       name: 'LinkedIn',
-      url: 'https://linkedin.com',
-      icon: '💼'
+      url: 'https://www.linkedin.com/in/ananya-gupta-800730324/',
+      icon: FaLinkedin
     },
     {
       name: 'Twitter',
       url: 'https://twitter.com',
-      icon: '🐦'
+      icon: FaTwitter
     }
   ]
 
@@ -30,9 +32,10 @@ function Contact() {
         <div className="mb-8 sm:mb-10">
           <a
             href="mailto:your.email@example.com"
-            className="text-lg sm:text-xl md:text-2xl text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors"
+            className="inline-flex items-center gap-3 text-lg sm:text-xl md:text-2xl text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors"
           >
-            your.email@example.com
+            <FaEnvelope className="text-xl sm:text-2xl" />
+            <span>ananya0810gupta@gmail.com</span>
           </a>
         </div>
 
@@ -43,9 +46,9 @@ function Contact() {
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg shadow-md hover:shadow-lg transition-shadow hover:text-blue-600 dark:hover:text-blue-400"
+              className="flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:text-blue-600 dark:hover:text-blue-400 hover:-translate-y-1"
             >
-              <span className="text-xl sm:text-2xl">{social.icon}</span>
+              <social.icon className="text-xl sm:text-2xl" />
               <span className="text-sm sm:text-base font-medium">{social.name}</span>
             </a>
           ))}

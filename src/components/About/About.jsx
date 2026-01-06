@@ -1,34 +1,67 @@
+import { FaGraduationCap, FaCode, FaUsers } from 'react-icons/fa'
+
 function About() {
+  const highlights = [
+    {
+      icon: FaGraduationCap,
+      title: 'Education',
+      description: 'Currently pursuing a BTech in Computer Science and Engineering, focusing on software development, web technologies, and core programming fundamentals.'
+
+
+    },
+    {
+      icon: FaCode,
+      title: 'Passion',
+      description: 'Passionate about full-stack development and building user-friendly applications using modern technologies like React, JavaScript, and Python.'
+
+    },
+    {
+      icon: FaUsers,
+      title: 'Collaboration',
+      description: 'Enjoy collaborating in team environments, sharing ideas clearly, and contributing effectively through strong communication and leadership skills.'
+
+    }
+  ]
+
   return (
     <section className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800">
-      <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8 sm:mb-10 text-center">
-          About Me
-        </h2>
-        <p className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8 sm:mb-10 text-center">
-          I'm a passionate student developer with a keen interest in creating innovative web solutions. 
-          I enjoy learning new technologies and applying them to solve real-world problems through code.
-        </p>
-        <ul className="space-y-4 sm:space-y-5 max-w-2xl mx-auto">
-          <li className="flex items-start">
-            <span className="text-blue-600 dark:text-blue-400 mr-3 mt-1 text-lg">•</span>
-            <span className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-              Currently pursuing my degree in Computer Science, focusing on web development and software engineering
-            </span>
-          </li>
-          <li className="flex items-start">
-            <span className="text-blue-600 dark:text-blue-400 mr-3 mt-1 text-lg">•</span>
-            <span className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-              Passionate about building user-friendly applications with modern frameworks like React and Vue
-            </span>
-          </li>
-          <li className="flex items-start">
-            <span className="text-blue-600 dark:text-blue-400 mr-3 mt-1 text-lg">•</span>
-            <span className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-              Always eager to collaborate on projects and contribute to open-source communities
-            </span>
-          </li>
-        </ul>
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            About Me
+          </h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+        </div>
+
+        <div className="max-w-3xl mx-auto mb-12 sm:mb-16">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed text-center font-medium">
+          A second-year BTech CSE student with a strong interest in full-stack development and digital marketing. I enjoy building practical web solutions and learning new technologies.
+
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          {highlights.map((item, index) => (
+            <div
+              key={index}
+              className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 opacity-0 animate-fade-in-up"
+              style={{
+                animationDelay: `${index * 150}ms`,
+                animationFillMode: 'forwards'
+              }}
+            >
+              <div className="flex justify-center mb-4">
+                <item.icon className="text-4xl sm:text-5xl text-blue-600 dark:text-blue-400" />
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 text-center">
+                {item.title}
+              </h3>
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-center">
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )

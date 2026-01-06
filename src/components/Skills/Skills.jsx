@@ -20,7 +20,11 @@ function Skills() {
           {skills.map((skill, index) => (
             <span
               key={index}
-              className="px-4 sm:px-5 py-2 sm:py-2.5 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm sm:text-base font-medium shadow-md hover:shadow-lg transition-shadow"
+              className="px-4 sm:px-5 py-2 sm:py-2.5 bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm sm:text-base font-medium shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-200 ease-out opacity-0 animate-fade-in-up"
+              style={{
+                animationDelay: `${index * 50}ms`,
+                animationFillMode: 'forwards'
+              }}
             >
               {skill}
             </span>
