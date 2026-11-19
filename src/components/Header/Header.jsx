@@ -9,6 +9,7 @@ function Header() {
     { name: 'About', href: '#about' },
     // { name: 'Projects', href: '#projects' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Writing', href: '#writing' },
     { name: 'Contact', href: '#contact' }
   ]
 
