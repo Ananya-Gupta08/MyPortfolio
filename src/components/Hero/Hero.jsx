@@ -1,46 +1,91 @@
-import profilePhoto from '../../assets/profilepic.jpg'
+import { useEffect, useState } from "react"
+import profilePhoto from "../../assets/profilepic.png"
+
+const GRADIENT =
+  "linear-gradient(90deg, #3b0207 0%, #b52a00 35%, #ff9f1a 65%, #fff98a 100%)"
+
+// Coordinates are RELATIVE TO HERO CENTER
+const bubbles = [
+  // text bubbles
+  { text: "About", size: 150, x: -380, y: -100, link: "#about" },
+  { text: "Projects", size: 170, x: -300, y: 40, link: "#projects" },
+  { text: "Skills", size: 200, x: 300, y: -90, link: "#skills" },
+  { text: "Experience", size: 180, x: 320, y: 120, link: "#experience" },
+  { text: "Contact", size: 210, x: 90, y: -290, link: "#contact" },
+
+  // decorative bubbles
+  { size: 90, x: -520, y: -60 },
+  { size: 70, x: -450, y: 140 },
+  { size: 80, x: -200, y: -220 },
+  { size: 60, x: 240, y: 260 },
+  { size: 75, x: 40, y: 60 },
+  { size: 85, x: 520, y: -40 },
+]
 
 function Hero() {
-  return (
-    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 lg:pb-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="max-w-7xl mx-auto w-full">
-        <div className="flex flex-col lg:flex-row items-center lg:items-center gap-10 sm:gap-12 lg:gap-16 xl:gap-20">
-          
-          <div className="flex-1 text-center lg:text-left space-y-5 sm:space-y-6 lg:space-y-7 opacity-0 animate-fade-in-up lg:animate-slide-in-left" style={{ animationFillMode: 'forwards' }}>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-gray-900 dark:text-white tracking-tight leading-tight">
-              Ananya Gupta
-            </h1>
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-700 dark:text-gray-200 tracking-wide">
-            Full-Stack Developer
-            </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium pt-1">
-            Creating practical, user-focused web interfaces with modern technologies.
-            </p>
-            <div className="flex justify-center lg:justify-start pt-3 sm:pt-5">
-              <a 
-                href="https://github.com/Ananya-Gupta08"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-8 sm:px-10 py-3.5 sm:py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl text-lg sm:text-xl">
-                View My Work
-              </a>
-              
-            </div>
-          </div>
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const [hovered, setHovered] = useState(null)
 
-          {/* Profile Photo - Right on desktop, bottom on mobile */}
-          <div className="flex-shrink-0 w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 opacity-0 animate-fade-in-up lg:animate-slide-in-right" style={{ animationFillMode: 'forwards', animationDelay: '0.2s' }}>
-            <div className="relative w-full aspect-square mx-auto">
-              {/* Main photo container */}
-              <div className="relative w-full h-full rounded-full overflow-hidden">
-                <img
-                  src={profilePhoto}
-                  alt="Ananya Gupta - Full-Stack Developer"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
+  useEffect(() => {
+    const onScroll = () => {
+      setScrollProgress(Math.min(window.scrollY / window.innerHeight, 1))
+    }
+    window.addEventListener("scroll", onScroll)
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  return (
+    <section className="relative h-[200vh] bg-white">
+      <div className="sticky top-0 h-screen overflow-hidden">
+
+        {/* HERO CANVAS */}
+        <div className="relative w-full h-full flex items-end justify-center pb-24">
+
+          {/* PHOTO */}
+          <img
+            src={profilePhoto}
+            alt="Ananya Gupta"
+            className="relative z-20 object-contain h-[500px]"
+          />
+
+          {/* BUBBLES */}
+          {bubbles.map((b, i) => {
+            const progress = 1 - scrollProgress
+            const isHovered = hovered === i
+            const repel = hovered !== null && hovered !== i ? 1.15 : 1
+
+            return (
+              <a
+                key={i}
+                href={b.link}
+                onMouseEnter={() => b.text && setHovered(i)}
+                onMouseLeave={() => setHovered(null)}
+                className="absolute z-10 rounded-full flex items-center justify-center
+                           transition-all ease-out"
+                style={{
+                  width: b.size,
+                  height: b.size,
+                  background: isHovered ? GRADIENT : "#000",
+                  color: "#fff",
+                  left: "50%",
+                  top: "50%",
+                  transform: `
+                    translate(
+                      ${b.x * progress * repel}px,
+                      ${b.y * progress * repel}px
+                    )
+                  `,
+                  transitionDuration: "1100ms",
+                }}
+              >
+                {b.text && (
+                  <span className="text-sm sm:text-base font-semibold text-center px-4">
+                    {b.text}
+                  </span>
+                )}
+              </a>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -48,4 +93,3 @@ function Hero() {
 }
 
 export default Hero
-

@@ -1,71 +1,89 @@
 import { FaGraduationCap, FaCode, FaUsers } from 'react-icons/fa'
 
+const highlights = [
+  {
+    icon: FaGraduationCap,
+    title: 'Education',
+    description:
+      'BTech Computer Science student with a strong foundation in programming, software engineering principles, and modern web technologies.'
+  },
+  {
+    icon: FaCode,
+    title: 'Passion',
+    description:
+      'Deeply interested in building clean, scalable full-stack applications with thoughtful user experience and maintainable code.'
+  },
+  {
+    icon: FaUsers,
+    title: 'Collaboration',
+    description:
+      'Comfortable working in teams, communicating ideas clearly, and contributing meaningfully through ownership and consistency.'
+  }
+]
+
+const GRADIENT =
+  'linear-gradient(90deg, #3b0207 0%, #b52a00 35%, #ff9f1a 65%, #fff98a 100%)'
+
 function About() {
-  const highlights = [
-    {
-      icon: FaGraduationCap,
-      title: 'Education',
-      description: 'Currently pursuing a BTech in Computer Science and Engineering, focusing on software development, web technologies, and core programming fundamentals.'
-
-
-    },
-    {
-      icon: FaCode,
-      title: 'Passion',
-      description: 'Passionate about full-stack development and building user-friendly applications using modern technologies like React, JavaScript, and Python.'
-
-    },
-    {
-      icon: FaUsers,
-      title: 'Collaboration',
-      description: 'Enjoy collaborating in team environments, sharing ideas clearly, and contributing effectively through strong communication and leadership skills.'
-
-    }
-  ]
-
   return (
-    <section className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800">
+    <section id="about" className="bg-white py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+
+        {/* Heading */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl font-bold text-black tracking-tight">
             About Me
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+          <div
+            className="mx-auto mt-6 h-[3px] w-20 rounded-full"
+            style={{ background: GRADIENT }}
+          />
         </div>
 
-        <div className="max-w-3xl mx-auto mb-12 sm:mb-16">
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed text-center font-medium">
-          A second-year BTech CSE student with a strong interest in full-stack development and digital marketing. I enjoy building practical web solutions and learning new technologies.
-
+        {/* Intro Text */}
+        <div className="max-w-3xl mx-auto mb-20 text-center">
+          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+            I’m a second-year Computer Science student who enjoys building
+            thoughtful digital experiences. I focus on clarity, structure, and
+            long-term usability — whether I’m writing code, designing interfaces,
+            or collaborating with a team.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        {/* Highlights */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 border-none">
           {highlights.map((item, index) => (
             <div
               key={index}
-              className="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 opacity-0 animate-fade-in-up"
-              style={{
-                animationDelay: `${index * 150}ms`,
-                animationFillMode: 'forwards'
-              }}
+              className="group border border-none rounded-2xl p-8 transition-all duration-300
+                         hover:-translate-y-2 hover:border-none hover:shadow-lg hover:shadow-black/10"
             >
-              <div className="flex justify-center mb-4">
-                <item.icon className="text-4xl sm:text-5xl text-blue-600 dark:text-blue-400" />
+              {/* Icon */}
+              <div
+                className="mb-6 w-14 h-14 flex items-center justify-center rounded-full transition-all duration-300"
+                style={{
+                  background: GRADIENT
+                }}
+              >
+                <item.icon className="text-white text-2xl" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 text-center">
+
+              {/* Title */}
+              <h3 className="text-xl font-semibold text-black mb-3">
                 {item.title}
               </h3>
-              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed text-center">
+
+              {/* Description */}
+              <p className="text-gray-700 leading-relaxed text-base">
                 {item.description}
               </p>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   )
 }
 
 export default About
-

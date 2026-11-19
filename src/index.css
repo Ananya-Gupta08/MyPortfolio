@@ -4,15 +4,15 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply antialiased;
   }
-  
+
   section {
     scroll-margin-top: 5rem;
   }
-  
+
   @media (min-width: 640px) {
     section {
       scroll-margin-top: 6rem;
@@ -31,11 +31,11 @@
       transform: translateY(0);
     }
   }
-  
+
   .animate-fade-in-up {
     animation: fade-in-up 0.6s ease-out;
   }
-  
+
   @keyframes slide-in-left {
     from {
       opacity: 0;
@@ -46,7 +46,11 @@
       transform: translateX(0);
     }
   }
-  
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.8s ease-out;
+  }
+
   @keyframes slide-in-right {
     from {
       opacity: 0;
@@ -57,11 +61,7 @@
       transform: translateX(0);
     }
   }
-  
-  .animate-slide-in-left {
-    animation: slide-in-left 0.8s ease-out;
-  }
-  
+
   .animate-slide-in-right {
     animation: slide-in-right 0.8s ease-out;
   }
